@@ -5,7 +5,7 @@
 
 Use:
 
-local LibFeedback = LibStub:GetLibrary('LibFeedback')
+local LF = LibFeedback
 -- The button is returned so you can modify the button if needed
 -- ExampleAddonNameSpace.feedbackButton = LibFeedback:initializeFeedbackWindow(
 ExampleAddonNameSpace, -- namespace of the addon
@@ -42,19 +42,11 @@ parentControl, -- The parent control to anchor the feedback button(s) + label(s)
 28   -- The default height of the feedback window's buttons
 )
 ]]
-
-
-local libLoaded
-local LIB_NAME, VERSION = "LibFeedback", 1.3
-local lib, oldminor
-if
-	LibStub then lib, oldminor = LibStub:NewLibrary(LIB_NAME, VERSION)
-else
-	lib = {}
-end
-if not lib then return end
+local libName, libVersion = "LibFeedback", 133
+local lib
+lib = {}
 lib.debug = false
-lib.version = VERSION
+lib.version = libVersion
 
 local function SendNote(self)
 
@@ -231,6 +223,10 @@ function lib:initializeFeedbackWindow(parentAddonNameSpace, parentAddonName, par
                     if isButtonInfoDeep then
                         if buttonData[1] == 0 or  buttonData[1] == "" then
                             buttonText = buttonData[2]
+                            amount = buttonData[1]
+                        end
+                        if type(buttonData[1])=="function" then
+                        	buttonText = buttonData[2]
                             amount = buttonData[1]
                         end
                     else
