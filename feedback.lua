@@ -45,7 +45,7 @@ parentControl, -- The parent control to anchor the feedback button(s) + label(s)
 
 
 local libLoaded
-local LIB_NAME, VERSION = "LibFeedback", 1.32
+local LIB_NAME, VERSION = "LibFeedback", 133
 local lib, oldminor
 if
 	LibStub then lib, oldminor = LibStub:NewLibrary(LIB_NAME, VERSION)
